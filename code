@@ -1,0 +1,28 @@
+# 1) pairwise distance between two sequences
+seq <-matrix (c("A","T","G","T","A","A","A","T","G","G",
+               "A","T","A","T","T","T","A","T","A","G"),
+              nrow=2,
+              byrow = TRUE)
+F_D <- sum(seq[1,] != seq[2,]) / dim(seq)[2]
+D <- (-3/4)*log(1-((4/3)*F_D))
+D
+
+#2) pairwise distance as a matrix
+seqm <- matrix (c("A","T","G","T","A","A","A","T","G","G",
+                  "A","T","A","T","T","T","A","T","A","G",
+                  "A","T","A","G","T","A","T","G","A","T"),
+                nrow=3,
+                byrow = TRUE)
+seqm[1,2]
+
+F_D=matrix(0,3,3)
+D = matrix(0,3,3)
+for (i in 1:nrow(D)){
+  for (j in 1:ncol(D)){
+    F_D[i,j]=sum(seqm[i,] != seqm[j,]) / dim(seqm)[2]
+    D[i,j]=(-3/4)*log(1-((4/3)*F_D[i,j]))
+  }
+}
+F_D
+D
+
